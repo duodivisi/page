@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Duo Divisi | Pietro & Rafael</title>
+    <style>
+        /* Paleta de Cores e Estilo Geral */
+        :root {
+            --creme: #F5F2E9;
+            --azul-marinho: #1A3461;
+            --ouro: #C2A752;
+        }
+
+        body {
+            background-color: var(--creme);
+            font-family: 'Garamond', serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+            padding: 20px;
+            color: var(--azul-marinho);
+        }
+
+        /* Container Principal */
+        .container {
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+            padding: 40px 20px;
+            border: 1px solid rgba(194, 167, 82, 0.3); /* Moldura subtil em ouro */
+            border-radius: 15px;
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Logotipo (Monograma) */
+        .logo-img {
+            width: 120px;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin: 10px 0;
+            letter-spacing: 2px;
+            font-weight: normal;
+        }
+
+        .bio {
+            font-size: 1rem;
+            line-height: 1.5;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        /* Estilo dos Botões */
+        .btn {
+            display: block;
+            background-color: var(--azul-marinho);
+            color: var(--ouro);
+            text-decoration: none;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: transform 0.2s, background-color 0.2s;
+            border: 1px solid var(--ouro);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            background-color: #12264a;
+        }
+
+        .btn span {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: normal;
+            color: white;
+            margin-top: 5px;
+        }
+
+        footer {
+            margin-top: 40px;
+            font-size: 0.7rem;
+            color: var(--ouro);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <img src="https://i.ibb.co/monograma-duo-divisi.png" alt="Duo Divisi Logo" class="logo-img">
+        
+        <h1>Duo Divisi</h1>
+        
+        <p class="bio">
+            Pietro Cruz & Rafael Andrade<br>
+            Dueto de Violinos em Portugal.<br>
+            Elevando momentos através da harmonia.
+        </p>
+
+        <a href="https://www.mbway.pt/pay/351913032646" class="btn">
+            🎁 Apoie a nossa Arte (MB WAY)
+            <span>Clique para contribuir via MB WAY</span>
+        </a>
+
+        <a href="https://paypal.me/duodivisi" class="btn">
+            🌍 International Support (PayPal)
+            <span>Donations via PayPal / Credit Card</span>
+        </a>
+
+        <a href="https://instagram.com/duodivisi.pt" class="btn">
+            📸 Instagram
+            <span>Siga a nossa jornada e performances</span>
+        </a>
+
+        <a href="https://wa.me/351913032646" class="btn">
+            ✉️ Contacto para Eventos
+            <span>Orçamentos via WhatsApp</span>
+        </a>
+
+        <footer>
+            Duo Divisi &copy; 2026 | Portugal
+        </footer>
+    </div>
+
+</body>
+</html>
