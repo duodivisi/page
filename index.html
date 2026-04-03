@@ -104,10 +104,10 @@
             Elevando momentos através da harmonia.
         </p>
 
-        <button class="btn" onclick="copyMBWAY()">
+        <a class="btn" href="#" onclick="copyMBWAY()">
             📋 Copiar Número MB WAY
             <span>Clique para copiar o número</span>
-        </button>
+        </a>
 
         <a href="https://paypal.me/duodivisi" class="btn">
             🌍 International Support (PayPal)
@@ -136,8 +136,34 @@
 
     <script>
         function copyMBWAY() {
-            navigator.clipboard.writeText('917817365');
-            alert('Número copiado: 917817365');
+            const mbway = '917817365';
+
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(mbway)
+                    .then(() => alert(`Número copiado: ${mbway}`))
+                    .catch(() => fallbackCopy(mbway));
+            } else {
+                fallbackCopy(mbway);
+            }
+        }
+
+        function fallbackCopy(text) {
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            textarea.setAttribute('readonly', '');
+            textarea.style.position = 'absolute';
+            textarea.style.left = '-9999px';
+            document.body.appendChild(textarea);
+            textarea.select();
+
+            try {
+                const succeeded = document.execCommand('copy');
+                alert(succeeded ? `Número copiado: ${text}` : `Falha ao copiar. Por favor copie manualmente: ${text}`);
+            } catch (err) {
+                alert(`Falha ao copiar. Por favor copie manualmente: ${text}`);
+            } finally {
+                document.body.removeChild(textarea);
+            }
         }
     </script>
 
