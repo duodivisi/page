@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Duo Divisi | Pietro & Rafael</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css" />
     <style>
         /* Paleta de Cores e Estilo Geral */
         :root {
@@ -19,40 +20,44 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
+            min-height: 100vh;
             margin: 0;
-            padding: 20px;
+            padding: 15px;
             color: var(--azul-marinho);
         }
 
         /* Container Principal */
         .container {
-            max-width: 400px;
             width: 100%;
+            max-width: 500px;
             text-align: center;
-            padding: 40px 20px;
-            border: 1px solid rgba(194, 167, 82, 0.3); /* Moldura subtil em ouro */
+            padding: 20px 20px;
+            border: 1px solid rgba(194, 167, 82, 0.3);
             border-radius: 15px;
             background-color: rgba(255, 255, 255, 0.3);
+            box-sizing: border-box;
         }
 
         /* Logotipo (Monograma) */
         .logo-img {
             width: 100%;
-            padding: 0%;
-            margin-bottom: 20px;
+            max-width: 300px;
+            padding: 0;
+            margin: 0 auto 20px;
+            display: block;
         }
 
         h1 {
-            font-size: 2.5rem;
+            font-size: clamp(1.8rem, 5vw, 2.5rem);
             margin: 10px 0;
             letter-spacing: 2px;
             font-weight: normal;
         }
 
         .bio {
-            font-size: 1rem;
+            font-size: clamp(0.9rem, 3vw, 1rem);
             line-height: 1.5;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
             font-style: italic;
         }
 
@@ -62,13 +67,14 @@
             background-color: var(--azul-marinho);
             color: var(--ouro);
             text-decoration: none;
-            padding: 15px;
-            margin: 15px 0;
+            padding: 12px 15px;
+            margin: 12px 0;
             border-radius: 8px;
             font-weight: bold;
             transition: transform 0.2s, background-color 0.2s;
             border: 1px solid var(--ouro);
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            font-size: clamp(0.9rem, 2.5vw, 1rem);
         }
 
         .btn:hover {
@@ -76,20 +82,62 @@
             background-color: #12264a;
         }
 
+        .btn i,
+        .btn svg {
+            margin-right: 8px;
+            vertical-align: text-bottom;
+            width: 1.2em;
+            height: 1.2em;
+            color: white;
+        }
+
+        .btn svg {
+            fill: white;
+        }
+
         .btn span {
             display: block;
-            font-size: 0.8rem;
+            font-size: clamp(0.7rem, 2vw, 0.8rem);
             font-weight: normal;
             color: white;
             margin-top: 5px;
         }
 
         footer {
-            margin-top: 40px;
-            font-size: 0.7rem;
+            margin-top: 30px;
+            font-size: clamp(0.6rem, 1.5vw, 0.7rem);
             color: var(--ouro);
             text-transform: uppercase;
             letter-spacing: 1px;
+        }
+
+        /* Tablet - 768px and up */
+        @media (min-width: 768px) {
+            body {
+                padding: 20px;
+            }
+
+            .container {
+                padding: 25px 25px;
+                max-width: 600px;
+            }
+
+            .btn {
+                padding: 15px 20px;
+                margin: 15px 0;
+            }
+        }
+
+        /* Desktop - 1024px and up */
+        @media (min-width: 1024px) {
+            .container {
+                max-width: 700px;
+                padding: 30px 30px;
+            }
+
+            .btn {
+                padding: 18px 25px;
+            }
         }
     </style>
 </head>
@@ -98,25 +146,29 @@
     <div class="container">
         <img src="./images/logo-principal.png" alt="Duo Divisi Logo" class="logo-img">
         
-        <p class="bio">
+        <p class="bio" id="bio">
             Pietro Cruz & Rafael Andrade<br>
             Dueto de Violinos em Portugal.<br>
             Elevando momentos através da harmonia.
         </p>
 
-        <a class="btn" href="#" onclick="copyMBWAY()">
-            📋 Copiar Número MB WAY
-            <span>Clique para copiar o número</span>
+        <a class="btn" href="#" id="copyBtn" onclick="copyMBWAY()">
+            <i class="fa-solid fa-copy"></i> Copiar Número MB WAY
+            <span id="copySub">Clique para copiar o número</span>
         </a>
 
-        <a href="https://paypal.me/duodivisi" class="btn">
-            🌍 International Support (PayPal)
-            <span>Donations via PayPal / Credit Card</span>
+        <a href="https://paypal.me/duodivisi" class="btn" id="paypalBtn">
+            <i class="fa-brands fa-paypal"></i> Apoio Internacional (PayPal)
+            <span id="paypalSub">Doações via PayPal / Cartão de Crédito</span>
         </a>
 
-        <a href="https://revolut.me/pietrodh8v" class="btn">
-            💳 Apoie via Revolut
-            <span>Contribua através do Revolut</span>
+        <a href="https://revolut.me/pietrodh8v" class="btn" id="revolutBtn">
+            <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" id="Revolut--Streamline-Simple-Icons" height="24" width="24">
+                <desc>Revolut Streamline Icon: https://streamlinehq.com</desc>
+                <title>Revolut</title>
+                <path d="M20.9133 6.9566C20.9133 3.1208 17.7898 0 13.9503 0H2.424v3.8605h10.9782c1.7376 0 3.177 1.3651 3.2087 3.043 0.016 0.84 -0.2994 1.633 -0.8878 2.2324 -0.5886 0.5998 -1.375 0.9303 -2.2144 0.9303H9.2322a0.2756 0.2756 0 0 0 -0.2755 0.2752v3.431c0 0.0585 0.018 0.1142 0.052 0.1612L16.2646 24h5.3114l-7.2727 -10.094c3.6625 -0.1838 6.61 -3.2612 6.61 -6.9494zM6.8943 5.9229H2.424V24h4.4704z" fill="white" stroke-width="1"></path>
+            </svg> Apoie via Revolut
+            <span id="revolutSub">Contribua através do Revolut</span>
         </a>
 
         <!--a href="https://instagram.com/duodivisi.pt" class="btn">
@@ -124,9 +176,9 @@
             <span>Siga a nossa jornada e performances</span>
         </a-->
 
-        <a href="https://wa.me/351934995895" class="btn">
-            ✉️ Contacto para Eventos
-            <span>Orçamentos via WhatsApp</span>
+        <a href="https://wa.me/351934995895" class="btn" id="contactBtn">
+            <i class="fa-brands fa-whatsapp"></i> Contacto para Eventos
+            <span id="contactSub">Orçamentos via WhatsApp</span>
         </a>
 
         <footer>
@@ -135,19 +187,117 @@
     </div>
 
     <script>
+        const translations = {
+            pt: {
+                bio: 'Pietro Cruz & Rafael Andrade<br>Dueto de Violinos em Portugal.<br>Elevando momentos através da harmonia.',
+                copyBtn: '<i class="fa-solid fa-copy"></i> Copiar Número MB WAY',
+                copySub: 'Clique para copiar o número',
+                paypalBtn: '🌍 Apoio Internacional (PayPal)',
+                paypalSub: 'Doações via PayPal / Cartão de Crédito',
+                revolutBtn: `<svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" id="Revolut--Streamline-Simple-Icons" height="24" width="24">
+                    <desc>Revolut Streamline Icon: https://streamlinehq.com</desc>
+                    <title>Revolut</title>
+                    <path d="M20.9133 6.9566C20.9133 3.1208 17.7898 0 13.9503 0H2.424v3.8605h10.9782c1.7376 0 3.177 1.3651 3.2087 3.043 0.016 0.84 -0.2994 1.633 -0.8878 2.2324 -0.5886 0.5998 -1.375 0.9303 -2.2144 0.9303H9.2322a0.2756 0.2756 0 0 0 -0.2755 0.2752v3.431c0 0.0585 0.018 0.1142 0.052 0.1612L16.2646 24h5.3114l-7.2727 -10.094c3.6625 -0.1838 6.61 -3.2612 6.61 -6.9494zM6.8943 5.9229H2.424V24h4.4704z" fill="white" stroke-width="1"></path>
+                </svg> Apoie via Revolut`,
+                revolutSub: 'Contribua através do Revolut',
+                contactBtn: '<i class="fa-brands fa-whatsapp"></i> Contacto para Eventos',
+                contactSub: 'Orçamentos via WhatsApp',
+                copySuccess: 'Número copiado: ',
+                copyFail: 'Falha ao copiar. Por favor copie manualmente: '
+            },
+            en: {
+                bio: 'Pietro Cruz & Rafael Andrade<br>Violin duo in Portugal.<br>Uplifting moments through harmony.',
+                copyBtn: '<i class="fa-solid fa-copy"></i> Copy MB WAY Number',
+                copySub: 'Click to copy the number',
+                paypalBtn: '<i class="fa-brands fa-paypal"></i> International Support (PayPal)',
+                paypalSub: 'Donations via PayPal / Credit Card',
+                revolutBtn: `<svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" id="Revolut--Streamline-Simple-Icons" height="24" width="24">
+                    <desc>Revolut Streamline Icon: https://streamlinehq.com</desc>
+                    <title>Revolut</title>
+                    <path d="M20.9133 6.9566C20.9133 3.1208 17.7898 0 13.9503 0H2.424v3.8605h10.9782c1.7376 0 3.177 1.3651 3.2087 3.043 0.016 0.84 -0.2994 1.633 -0.8878 2.2324 -0.5886 0.5998 -1.375 0.9303 -2.2144 0.9303H9.2322a0.2756 0.2756 0 0 0 -0.2755 0.2752v3.431c0 0.0585 0.018 0.1142 0.052 0.1612L16.2646 24h5.3114l-7.2727 -10.094c3.6625 -0.1838 6.61 -3.2612 6.61 -6.9494zM6.8943 5.9229H2.424V24h4.4704z" fill="white" stroke-width="1"></path>
+                </svg> Support via Revolut`,
+                revolutSub: 'Contribute through Revolut',
+                contactBtn: '<i class="fa-brands fa-whatsapp"></i> Contact for Events',
+                contactSub: 'Quotes via WhatsApp',
+                copySuccess: 'Number copied: ',
+                copyFail: 'Copy failed. Please copy manually: '
+            },
+            es: {
+                bio: 'Pietro Cruz & Rafael Andrade<br>Dúo de violines en Portugal.<br>Elevando momentos a través de la armonía.',
+                copyBtn: '<i class="fa-solid fa-copy"></i> Copiar número MB WAY',
+                copySub: 'Haz clic para copiar el número',
+                paypalBtn: '<i class="fa-brands fa-paypal"></i> Apoyo internacional (PayPal)',
+                paypalSub: 'Donaciones vía PayPal / Tarjeta de crédito',
+                revolutBtn: `<svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" id="Revolut--Streamline-Simple-Icons" height="24" width="24">
+                    <desc>Revolut Streamline Icon: https://streamlinehq.com</desc>
+                    <title>Revolut</title>
+                    <path d="M20.9133 6.9566C20.9133 3.1208 17.7898 0 13.9503 0H2.424v3.8605h10.9782c1.7376 0 3.177 1.3651 3.2087 3.043 0.016 0.84 -0.2994 1.633 -0.8878 2.2324 -0.5886 0.5998 -1.375 0.9303 -2.2144 0.9303H9.2322a0.2756 0.2756 0 0 0 -0.2755 0.2752v3.431c0 0.0585 0.018 0.1142 0.052 0.1612L16.2646 24h5.3114l-7.2727 -10.094c3.6625 -0.1838 6.61 -3.2612 6.61 -6.9494zM6.8943 5.9229H2.424V24h4.4704z" fill="white" stroke-width="1"></path>
+                </svg> Apoya vía Revolut`,
+                revolutSub: 'Contribuye a través de Revolut',
+                contactBtn: '<i class="fa-brands fa-whatsapp"></i> Contacto para eventos',
+                contactSub: 'Presupuestos por WhatsApp',
+                copySuccess: 'Número copiado: ',
+                copyFail: 'Error al copiar. Por favor copia manualmente: '
+            },
+            fr: {
+                bio: 'Pietro Cruz & Rafael Andrade<br>Duet de violons au Portugal.<br>Sublimant les moments grâce à l’harmonie.',
+                copyBtn: '<i class="fa-solid fa-copy"></i> Copier le numéro MB WAY',
+                copySub: 'Cliquez pour copier le numéro',
+                paypalBtn: '<i class="fa-brands fa-paypal"></i> Soutien international (PayPal)',
+                paypalSub: 'Dons via PayPal / Carte de crédit',
+                revolutBtn: `<svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" id="Revolut--Streamline-Simple-Icons" height="24" width="24">
+                    <desc>Revolut Streamline Icon: https://streamlinehq.com</desc>
+                    <title>Revolut</title>
+                    <path d="M20.9133 6.9566C20.9133 3.1208 17.7898 0 13.9503 0H2.424v3.8605h10.9782c1.7376 0 3.177 1.3651 3.2087 3.043 0.016 0.84 -0.2994 1.633 -0.8878 2.2324 -0.5886 0.5998 -1.375 0.9303 -2.2144 0.9303H9.2322a0.2756 0.2756 0 0 0 -0.2755 0.2752v3.431c0 0.0585 0.018 0.1142 0.052 0.1612L16.2646 24h5.3114l-7.2727 -10.094c3.6625 -0.1838 6.61 -3.2612 6.61 -6.9494zM6.8943 5.9229H2.424V24h4.4704z" fill="white" stroke-width="1"></path>
+                </svg> Soutenez via Revolut`,
+                revolutSub: 'Contribuez via Revolut',
+                contactBtn: '<i class="fa-brands fa-whatsapp"></i> Contact pour événements',
+                contactSub: 'Devis via WhatsApp',
+                copySuccess: 'Numéro copié : ',
+                copyFail: 'Échec de la copie. Veuillez copier manuellement : '
+            }
+        };
+
+        function getUserLanguage() {
+            const navLang = (navigator.language || navigator.userLanguage || 'pt').toLowerCase();
+            if (navLang.startsWith('pt')) return 'pt';
+            if (navLang.startsWith('es')) return 'es';
+            if (navLang.startsWith('fr')) return 'fr';
+            return 'en';
+        }
+
+        function setButtonText(buttonId, label, subId, subText) {
+            const btn = document.getElementById(buttonId);
+            btn.innerHTML = `${label}<span id="${subId}">${subText}</span>`;
+        }
+
+        function translatePage() {
+            const lang = getUserLanguage();
+            const strings = translations[lang];
+            document.documentElement.lang = lang;
+
+            document.getElementById('bio').innerHTML = strings.bio;
+            setButtonText('copyBtn', strings.copyBtn, 'copySub', strings.copySub);
+            setButtonText('paypalBtn', strings.paypalBtn, 'paypalSub', strings.paypalSub);
+            setButtonText('revolutBtn', strings.revolutBtn, 'revolutSub', strings.revolutSub);
+            setButtonText('contactBtn', strings.contactBtn, 'contactSub', strings.contactSub);
+        }
+
         function copyMBWAY() {
             const mbway = '917817365';
+            const lang = getUserLanguage();
+            const strings = translations[lang];
 
             if (navigator.clipboard && navigator.clipboard.writeText) {
                 navigator.clipboard.writeText(mbway)
-                    .then(() => alert(`Número copiado: ${mbway}`))
-                    .catch(() => fallbackCopy(mbway));
+                    .then(() => alert(`${strings.copySuccess}${mbway}`))
+                    .catch(() => fallbackCopy(mbway, strings));
             } else {
-                fallbackCopy(mbway);
+                fallbackCopy(mbway, strings);
             }
         }
 
-        function fallbackCopy(text) {
+        function fallbackCopy(text, strings) {
             const textarea = document.createElement('textarea');
             textarea.value = text;
             textarea.setAttribute('readonly', '');
@@ -158,13 +308,15 @@
 
             try {
                 const succeeded = document.execCommand('copy');
-                alert(succeeded ? `Número copiado: ${text}` : `Falha ao copiar. Por favor copie manualmente: ${text}`);
+                alert(succeeded ? `${strings.copySuccess}${text}` : `${strings.copyFail}${text}`);
             } catch (err) {
-                alert(`Falha ao copiar. Por favor copie manualmente: ${text}`);
+                alert(`${strings.copyFail}${text}`);
             } finally {
                 document.body.removeChild(textarea);
             }
         }
+
+        translatePage();
     </script>
 
 </body>
